@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  background: radial-gradient(at top, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8rem;
+}
+
+nav {
+  max-width: 800px;
+  border: 2px solid lightgray;
+  margin: 0 auto;
+  margin-top: 5rem;
+}
+
+.three_powers {
+  position: relative;
+}
+
+.triangle {
+}
+/* 
+.paper_container {
+  position: absolute;
+  left: 0;
+  transform: translate(-50%, -50%);
+  background: white;
+  padding: 2.4rem;
+  border-radius: 50%;
+} 
+.rock_container {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background-color: white;
+  padding: 2.4rem;
+  border-radius: 50%;
+}
+
+.scissors_container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
+  background-color: white;
+  padding: 2.4rem;
+  border-radius: 50%;
+}
+
+*/
+
+.white_space{
+  background: white;
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+ 
+}
+
+/* .paper , .rock , .scissors{
+ 
+} */
+
+.paper{
+  position: absolute;
+}
+
+.paper_container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: 10rem;
+  height: 10rem;
+  background: linear-gradient(hsl(230, 89%, 62%), hsl(230, 89%, 65%));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rock{
+  position: absolute;
+}
+
+.rock_container {
+  position: absolute;
+  bottom: 0 ;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  background: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
+  border-radius: 50%;
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.scissors{
+  position: absolute;
+  
+}
+
+.scissors_container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  transform: translate(50%, -50%);
+  background: linear-gradient(hsl(39, 89%, 49%), hsl(40, 84%, 53%));
+  width: 10rem;
+  height: 10rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.score {
+  display: flex;
+  justify-content: center;
+  font-size: 2.8rem;
+  gap: 4rem;
+  padding: 5rem;
+}
+
+.human_score {
+}
+
+.computer_score {
+}
+
+.human_score--value {
+}
+
+.computer_score--value {
+}
+
+.computer_choice {
+  /* position: absolute;
+  left: 140px; */
+}

@@ -140,6 +140,33 @@ nav {
   padding: 5rem;
 }
 
+
+.human_choice{
+  position: relative;
+  
+}
+
+.fight{
+ width: 50rem;
+ height: 50rem;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ display: none;
+}
+
+.again{
+  padding: 1.4rem 5.8rem;
+  background: white;
+  border-radius: 1rem;
+  font-weight: 600;
+  letter-spacing: 3px;
+}
+
+.again:hover{
+  color: orangered;
+}
+
 .human_score {
 }
 
@@ -153,6 +180,7 @@ nav {
 }
 
 .computer_choice {
+  position: relative;
   /* position: absolute;
   left: 140px; */
 }

@@ -26,6 +26,24 @@ nav {
   border: 2px solid lightgray;
   margin: 0 auto;
   margin-top: 5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo {
+  padding: 2rem;
+}
+
+.score {
+  font-size: 2.8rem;
+
+  padding: 2rem;
+  color: hsl(229, 25%, 31%);
+  background-color: whitesmoke;
+  display: flex;
+  flex-direction: column;
+  margin: 2rem;
+  border-radius: 1rem;
 }
 
 .three_powers {
@@ -34,50 +52,15 @@ nav {
 
 .triangle {
 }
-/* 
-.paper_container {
-  position: absolute;
-  left: 0;
-  transform: translate(-50%, -50%);
-  background: white;
-  padding: 2.4rem;
-  border-radius: 50%;
-} 
-.rock_container {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, 50%);
-  background-color: white;
-  padding: 2.4rem;
-  border-radius: 50%;
-}
 
-.scissors_container {
-  position: absolute;
-  right: 0;
-  top: 0;
-  transform: translate(50%, -50%);
-  background-color: white;
-  padding: 2.4rem;
-  border-radius: 50%;
-}
-
-*/
-
-.white_space{
+.white_space {
   background: white;
   width: 80%;
   height: 80%;
   border-radius: 50%;
- 
 }
 
-/* .paper , .rock , .scissors{
- 
-} */
-
-.paper{
+.paper {
   position: absolute;
 }
 
@@ -93,15 +76,16 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
-.rock{
+.rock {
   position: absolute;
 }
 
 .rock_container {
   position: absolute;
-  bottom: 0 ;
+  bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
   background: linear-gradient(hsl(349, 71%, 52%), hsl(349, 70%, 56%));
@@ -111,11 +95,11 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
-.scissors{
+.scissors {
   position: absolute;
-  
 }
 
 .scissors_container {
@@ -130,41 +114,39 @@ nav {
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
-.score {
-  display: flex;
-  justify-content: center;
-  font-size: 2.8rem;
-  gap: 4rem;
-  padding: 5rem;
-}
-
-
-.human_choice{
+.human_choice {
   position: relative;
-  
 }
 
-.fight{
- width: 50rem;
- height: 50rem;
- display: flex;
- justify-content: space-between;
- align-items: center;
- display: none;
+.fight {
+  width: 50rem;
+  height: 50rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  display: none;
 }
 
-.again{
+.again {
   padding: 1.4rem 5.8rem;
-  background: white;
+  background: whitesmoke;
   border-radius: 1rem;
   font-weight: 600;
   letter-spacing: 3px;
+  width: 100%;
+  cursor: pointer;
 }
 
-.again:hover{
+.again:hover {
   color: orangered;
+}
+
+.scaleUp {
+  width: 20rem;
+  height: 20rem;
 }
 
 .human_score {
@@ -181,6 +163,29 @@ nav {
 
 .computer_choice {
   position: relative;
-  /* position: absolute;
-  left: 140px; */
+}
+
+.reset {
+  padding: 1.4rem 5.8rem;
+  border: 1px solid whitesmoke;
+  color: whitesmoke;
+  background-color: inherit;
+  border-radius: 1rem;
+  font-weight: 600;
+  position: absolute;
+  bottom: 4rem;
+  right: 4rem;
+  cursor: pointer;
+}
+
+.reset:hover {
+  color: orangered;
+}
+
+.result_text {
+  font-weight: 700;
+  font-size: 3.3rem;
+  color: whitesmoke;
+  text-align: center;
+  text-transform: uppercase;
 }

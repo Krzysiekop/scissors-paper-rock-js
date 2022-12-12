@@ -9,7 +9,9 @@ const fightContainer = document.querySelector(".fight");
 const againButton = document.querySelector(".again");
 const humanScore = document.querySelector(".human_score--value");
 const computerScore = document.querySelector(".computer_score--value");
+const winnerText = document.querySelector(".result_text");
 
+//score values
 let humanScr = Number(localStorage.getItem("humanScr")) || 0;
 let computerScr = Number(localStorage.getItem("computerScr")) || 0;
 
@@ -19,144 +21,103 @@ computerScore.textContent = computerScr;
 localStorage.setItem("humanScr", humanScr);
 localStorage.setItem("computerScr", computerScr);
 
-againButton.addEventListener("click", function () {
-  location.reload();
-});
+const winnigConditions = {
+  scissors: "paper",
+  paper: "rock",
+  rock: "scissors",
+};
 
-scissors.addEventListener("click", function () {
-  humanChoosed = "scissors";
-  let computerChoosed = computerSelection();
+//Main function
+const main = () => {
+  const buttons = [scissors, rock, paper];
+  buttons.forEach((element) => {
+    element.addEventListener("click", function () {
+      const humanChoosed = element.className;
 
-  threeOptionsContainer.style.display = "none";
-  fightContainer.style.display = "flex";
+      threeOptionsContainer.style.display = "none";
+      fightContainer.style.display = "flex";
 
+      renderHumanChoice(humanChoosed);
+      const computerChoosed = computerSelection();
+
+      checkWinner(computerChoosed, humanChoosed);
+    });
+  });
+};
+
+main();
+//Sub functions
+function renderHumanChoice(humanChoosed) {
   html = `
-    <div class="scissors_container">
+    <div class="${humanChoosed}_container scaleUp">
     <div class="white_space">
     </div>
       <img
-        class="scissors"
-        src="images/icon-scissors.svg"
+        class="${humanChoosed}"
+        src="images/icon-${humanChoosed}.svg"
         alt=""
         srcset=""
       />
-  </div>`;
+    </div>`;
 
   humanChoice.insertAdjacentHTML("beforeend", html);
-
-  console.log(checkWinner(computerChoosed, humanChoosed));
-});
-
-paper.addEventListener("click", function () {
-  humanChoosed = "paper";
-  let computerChoosed = computerSelection();
-
-  threeOptionsContainer.style.display = "none";
-  fightContainer.style.display = "flex";
-
-  html = `
-    <div class="paper_container">
-    <div class="white_space">
-    </div>
-      <img class="paper" src="images/icon-paper.svg" alt="" srcset="" />
-  </div>`;
-
-  humanChoice.insertAdjacentHTML("beforeend", html);
-
-  console.log(checkWinner(computerChoosed, humanChoosed));
-});
-
-rock.addEventListener("click", function () {
-  humanChoosed = "rock";
-  let computerChoosed = computerSelection();
-
-  threeOptionsContainer.style.display = "none";
-  fightContainer.style.display = "flex";
-  html = `
-    <div class="rock_container">
-    <div class="white_space">
-    </div>
-      <img class="rock" src="images/icon-rock.svg" alt="" srcset="" />
-  </div>`;
-
-  humanChoice.insertAdjacentHTML("beforeend", html);
-
-  console.log(checkWinner(computerChoosed, humanChoosed));
-});
-
-const index = Math.floor(Math.random() * 3);
-
-const selectArr = ["scissors", "paper", "rock"];
+}
 
 function computerSelection() {
+  const selectArr = ["scissors", "paper", "rock"];
   const index = Math.floor(Math.random() * 3);
 
-  html = `<div class="${selectArr[index]}_container">
-<div class="white_space">
-</div>
-  <img class="${selectArr[index]}" src="images/icon-${selectArr[index]}.svg" alt="" srcset="" />
-</div>`;
-
-  computerChoice.insertAdjacentHTML("beforeend", html);
-
+  renderComputerChoice(selectArr, index);
   return selectArr[index];
+}
+
+function renderComputerChoice(selectArr, index) {
+  html = `<div class="${selectArr[index]}_container scaleUp">
+          <div class="white_space">
+          </div>
+            <img class="${selectArr[index]}" src="images/icon-${selectArr[index]}.svg" alt="" srcset="" />
+          </div>`;
+  computerChoice.insertAdjacentHTML("beforeend", html);
 }
 
 function checkWinner(computerChoosed, humanChoosed) {
   let result;
 
-  switch (humanChoosed) {
-    case "scissors":
-      if (computerChoosed == "scissors") {
-        result = "Draft";
-        humanScr += 1;
-        computerScr += 1;
-      }
-      if (computerChoosed == "paper") {
-        result = "Human win";
-        humanScr += 1;
-      }
-      if (computerChoosed == "rock") {
-        result = "Computer win";
-        computerScr += 1;
-      }
-      break;
-    case "paper":
-      if (computerChoosed == "scissors") {
-        result = "Computer win";
-        computerScr += 1;
-      }
-      if (computerChoosed == "paper") {
-        result = "Draft";
-        humanScr += 1;
-        computerScr += 1;
-      }
-      if (computerChoosed == "rock") {
-        result = "Human win";
-        humanScr += 1;
-      }
-      break;
-    case "rock":
-      if (computerChoosed == "scissors") {
-        result = "Computer win";
-        computerScr += 1;
-      }
-      if (computerChoosed == "paper") {
-        result = "Human win";
-      }
-      if (computerChoosed == "rock") {
-        result = "Draft";
-        humanScr += 1;
-        computerScr += 1;
-      }
-      break;
-    default:
+  if (humanChoosed === computerChoosed) {
+    result = "Draft";
+    humanScr += 1;
+    computerScr += 1;
+  } else if (winnigConditions[humanChoosed].includes(computerChoosed)) {
+    result = "Human win";
+    humanScr += 1;
+  } else {
+    result = "CPU win";
+    computerScr += 1;
   }
 
   localStorage.humanScr = Number(humanScr);
   localStorage.computerScr = Number(computerScr);
 
-  humanScore.textContent = humanScr;
-  computerScore.textContent = computerScr;
+  renderScore(result);
+
   return result;
 }
+
+function renderScore(result) {
+  humanScore.textContent = humanScr;
+  computerScore.textContent = computerScr;
+  winnerText.textContent = result;
+}
+
+againButton.addEventListener("click", function () {
+  location.reload();
+});
+
+const resetScore = document.querySelector(".reset");
+resetScore.addEventListener("click", function () {
+  localStorage.clear();
+  humanScr = 0;
+  computerScr = 0;
+  humanScore.textContent = 0;
+  computerScore.textContent = 0;
+});
